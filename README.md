@@ -50,3 +50,6 @@ If you want to learn more about building native executables, please consult http
 ## Related Guides
 
 - MongoDB with Panache ([guide](https://quarkus.io/guides/mongodb-panache)): Simplify your persistence code for MongoDB via the active record or the repository pattern
+
+
+Let's get started!

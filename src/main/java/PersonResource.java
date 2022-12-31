@@ -28,9 +28,18 @@ public class PersonResource {
         return personRepository.findById(new ObjectId(id));
     }
 
+    @GET
+    @Path("/hello")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response testMessage() {
+        //return "Hello world and all who inhabit it!";
+       return Response.ok("Hello world and all who inhabit it!").build();
+    }
+
     @POST
     public Response create(Person person) {
         personRepository.persist(person);
+
         return Response.created(URI.create("/persons/" + person.id)).build();
     }
 

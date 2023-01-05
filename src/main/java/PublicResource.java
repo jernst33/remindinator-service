@@ -3,6 +3,8 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.LinkedList;
+import java.util.List;
 
 @Path("/api/public")
 public class PublicResource {
@@ -12,9 +14,9 @@ public class PublicResource {
 
     @GET
     @PermitAll
-    @Produces(MediaType.TEXT_PLAIN)
-    public String publicResource() {
-        return "public";
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<User> getAllUsers() {
+       return userRepository.listAll();
     }
 
     @POST
@@ -37,5 +39,14 @@ public class PublicResource {
     public User updateUser(@PathParam("userId") Long userId, User user) {
 
         return user;
+    }
+
+    @DELETE
+    @Path("{userID}")
+    @PermitAll
+    @Produces(MediaType.TEXT_PLAIN)
+    @Transactional
+    public void deleteUser(@PathParam("userID") Long userId) {
+        userRepository.deleteById(userId);
     }
 }

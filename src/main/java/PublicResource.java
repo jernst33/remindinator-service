@@ -19,6 +19,14 @@ public class PublicResource {
        return userRepository.listAll();
     }
 
+    @GET
+    @Path("{userId}")
+    @PermitAll
+    @Produces(MediaType.APPLICATION_JSON)
+    public User getUser(@PathParam("userId") Long userId) {
+        return userRepository.findById(userId);
+    }
+
     @POST
     @PermitAll
     @Consumes(MediaType.APPLICATION_JSON)

@@ -19,9 +19,10 @@ public class Startup {
     public void loadUsers(@Observes StartupEvent evt) {
         // reset and load all test users
         userRepository.deleteAll();
-        userRepository.persist(new User("admin", "admin@test.com", LocalDate.of(2002, 6, 11), "12345", "admin"));
-        userRepository.persist(new User("user", "user@test.com",LocalDate.of(1999, 3, 5), "12345", "user"));
-        userRepository.persist(new User("jacob", "jacob@test.com", LocalDate.of(1999, 3, 5), "12345", "owner"));
-        userRepository.persist(new User("thane", "thane@test.com", LocalDate.of(1999, 3, 5), "12345", "owner"));
+        userRepository.persist(new User("Jacob", "admin@test.com", LocalDate.of(1999, 3, 5), "12345", "admin"));
+        userRepository.persist(new User("Thane", "admin@test.com",LocalDate.of(1999, 3, 5), "12345", "admin"));
+        userRepository.persist(new User("Mike", "user@test.com", LocalDate.of(2002, 2, 6), "12345", "user"));
+        userRepository.persist(new User("Jerry", "user@test.com", LocalDate.of(1996, 1, 18), "12345", "user"));
+        userRepository.persist(new User("Bart", "user@test.com", LocalDate.of(2009, 5, 6), "12345", "user"));
     }
 }

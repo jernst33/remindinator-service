@@ -3,6 +3,7 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -56,5 +57,22 @@ public class PublicResource {
     @Transactional
     public void deleteUser(@PathParam("userID") Long userId) {
         userRepository.deleteById(userId);
+    }
+
+    @Path("/test")
+    @GET
+    @PermitAll
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<User> getUsersButJ() {
+        List<User> userList = userRepository.listAll();
+        List<User> usersToReturn = new ArrayList<User>();
+
+        for(User user: userList ) {
+            if (user.getUsername().toLowerCase().contains("j")) {
+                usersToReturn.add(user);
+            }
+
+        }
+        return usersToReturn;
     }
 }
